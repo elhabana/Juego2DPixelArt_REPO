@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public int vida = 3;
+
     [Header("Player Configuration")]
 
     [SerializeField] float speed;
@@ -34,7 +38,7 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
+        vida = 3;
 
     }
 
@@ -44,6 +48,10 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         Flip();
         AnimatorHandler();
+        if (vida == 0)
+        {
+            Dead();
+        }
     }
 
     private void FixedUpdate()
@@ -57,6 +65,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             AudioManager.instance.PlaySFX(1);
+            vida -= 1;
             Respawn();
             collision.gameObject.SetActive(true);
         }
@@ -73,7 +82,10 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(moveInput.x * speed, rb.linearVelocity.y);
     }
 
-    
+    void Dead()
+    {
+            SceneManager.LoadScene(0);
+    }
 
     void Flip()
     {
