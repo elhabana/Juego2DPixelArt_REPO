@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
         Respawn();
+        sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
@@ -49,14 +49,16 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Movement();
-    
+        AnimatorHandler();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            AudioManager.instance.PlaySFX(1);
             Respawn();
+            collision.gameObject.SetActive(true);
         }
     }
 
@@ -88,7 +90,11 @@ public class PlayerController : MonoBehaviour
     void AnimatorHandler()
     {
         anim.SetBool("Jump", !isGrounded);
-        if (rb.linearVelocity.x != 0) anim.SetBool("Run", true);
+        if (rb.linearVelocity.x > 0.1f || rb.linearVelocity.x < -0.1f)
+        {
+            anim.SetBool("Run", true);
+        }
+
         else anim.SetBool("Run", false);
     }
 
@@ -108,6 +114,7 @@ public class PlayerController : MonoBehaviour
         if (context.started && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+            AudioManager.instance.PlaySFX(3);
         }
     }
 

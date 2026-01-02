@@ -16,6 +16,7 @@ public class WinTrigger : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            AudioManager.instance.PlaySFX(2);
             SceneManager.LoadScene(sceneToLoad);
         }
     }
