@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public static PlayerController instance;
     public int vida = 3;
 
     [Header("Player Configuration")]
@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     //General references
     Vector2 moveInput;
 
+    
     // Start is called before the first frame update
     void Start()
     {
