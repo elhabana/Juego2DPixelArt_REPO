@@ -38,6 +38,13 @@ public class PointsSystem : MonoBehaviour
             collision.gameObject.SetActive(false);
             Debug.Log(actualPoints);
             //ESTO CADA VEZ QUE COJES UNA MONEDA, TE SUMA UNO, SUENA EL EFECTO DE AUDIO Y LO DESACTIVA.
+
+            if (actualPoints == winPoints)
+            {
+                winCoin.SetActive(true);
+                Debug.Log("WinCoin Spawned");
+                //ESTO HARA APARECER LA MONEDA DE VICTORIA SI LAS MONEDAS SON LAS ESTABLECIDAS.
+            }
         }
     }
 }
