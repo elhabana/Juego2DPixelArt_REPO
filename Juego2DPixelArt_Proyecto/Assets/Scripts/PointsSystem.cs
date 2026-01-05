@@ -5,23 +5,27 @@ using UnityEngine;
 public class PointsSystem : MonoBehaviour
 {
 
+    //ESTO CREA VARIABLES DENTRO DE UN SCRIPT PARA DESPUES REFERENCIARLAS DENTRO DE UNITY O TAMBIEN PUEDES DEJARLAS PRIVADAS
+
     [Header("Points Management")]
     [SerializeField] int actualPoints;
     [SerializeField] int winPoints = 7;
     [SerializeField] GameObject winCoin;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         actualPoints = 0;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (actualPoints == winPoints)
         {
             winCoin.SetActive(true);
+            Debug.Log("WinCoin Spawned");
+            //ESTO HARA APARECER LA MONEDA DE VICTORIA SI LAS MONEDAS SON LAS ESTABLECIDAS.
         }
     }
 
@@ -33,10 +37,7 @@ public class PointsSystem : MonoBehaviour
             actualPoints += 1;
             collision.gameObject.SetActive(false);
             Debug.Log(actualPoints);
-            if (actualPoints == winPoints)
-            {
-                Debug.Log("WinCoin Spawned");
-            }
+            //ESTO CADA VEZ QUE COJES UNA MONEDA, TE SUMA UNO, SUENA EL EFECTO DE AUDIO Y LO DESACTIVA.
         }
     }
 }

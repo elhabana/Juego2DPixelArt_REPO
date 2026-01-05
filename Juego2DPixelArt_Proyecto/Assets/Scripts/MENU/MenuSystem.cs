@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MenuSystem : MonoBehaviour
 {
+    //FUNCIONES PARA LOS BOTONES DEL MENU
+
     public void Jugar()
     {
         SceneManager.LoadScene(1);
