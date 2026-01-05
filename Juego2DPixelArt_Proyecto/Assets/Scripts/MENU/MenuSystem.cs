@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MenuSystem : MonoBehaviour
 {
+    public GameObject PanelOptions;
+
     //FUNCIONES PARA LOS BOTONES DEL MENU
 
     public void Jugar()
@@ -19,5 +21,15 @@ public class MenuSystem : MonoBehaviour
     public void MenuPrincipal()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void OpenOptionsPanel()
+    {
+        PanelOptions.SetActive(true);
+    }
+
+    public void CloseOptionsPanel()
+    {
+        PanelOptions.SetActive(false);
     }
 }
