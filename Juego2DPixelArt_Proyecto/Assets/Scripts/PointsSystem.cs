@@ -21,7 +21,11 @@ public class PointsSystem : MonoBehaviour
 
     void Update()
     {
-        
+        if (actualPoints == winPoints)
+        {
+            winCoin.SetActive(true);
+            //ESTO HARA APARECER LA MONEDA DE VICTORIA SI LAS MONEDAS SON LAS ESTABLECIDAS.
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,10 +40,10 @@ public class PointsSystem : MonoBehaviour
 
             if (actualPoints == winPoints)
             {
-                winCoin.SetActive(true);
                 Debug.Log("WinCoin Spawned");
-                //ESTO HARA APARECER LA MONEDA DE VICTORIA SI LAS MONEDAS SON LAS ESTABLECIDAS.
+                //ESTO HARA APARECER UN MENSAJE DE QUE LA MONEDA DE VICTORIA HA APARECIDO.
             }
+
         }
     }
 }
