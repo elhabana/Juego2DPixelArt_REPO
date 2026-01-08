@@ -30,7 +30,7 @@ public class movingplatform : MonoBehaviour
         }
 
         Vector3 direction = wantedpositoin - transform.position;
-        transform.position += direction.normalized * Time.deltaTime * 3f;
+        transform.position += direction.normalized * Time.deltaTime * 3 ;
 
         if (direction.magnitude < 1f)
         {
