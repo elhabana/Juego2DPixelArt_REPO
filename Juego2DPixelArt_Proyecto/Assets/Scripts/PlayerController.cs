@@ -22,7 +22,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] float groundCheckRadius = 0.2f;
     [SerializeField] LayerMask groundLayer;
-    
+
+    [Header("Bullet Shooting")]
+    public GameObject bullet;
+    public Transform bulletRespawn;
 
     [Header("Respawn Configuration")]
     [SerializeField] Transform respawnPoint;
@@ -52,6 +55,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         Flip();
         AnimatorHandler();
+        Shooting();
         if (vida == 0)
         {
             Dead();
@@ -134,4 +138,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Shooting()
+    {
+        if ((Input.GetKeyDown(KeyCode.F)))
+        {
+            Instantiate(bullet, bulletRespawn.position, bulletRespawn.rotation);
+            Debug.Log("Bullet out.");
+        }
+    }
 }
