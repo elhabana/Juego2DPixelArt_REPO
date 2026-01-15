@@ -13,14 +13,14 @@ public class BulletSpeed : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rbBullet.MovePosition(transform.position + transform.right * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Boss"))
+        if (other.gameObject.tag == ("Boss"))
         {
             Destroy(gameObject);
             Debug.Log("It hit the boss");
