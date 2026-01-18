@@ -77,6 +77,14 @@ public class PlayerController : MonoBehaviour
             Respawn();
             collision.gameObject.SetActive(true);
         }
+
+        if (collision.gameObject.CompareTag("EnergyBall"))
+        {
+            AudioManager.instance.PlaySFX(1);
+            vida -= 1;
+            Respawn();
+            collision.gameObject.SetActive(true);
+        }
     }
 
 
@@ -92,7 +100,7 @@ public class PlayerController : MonoBehaviour
 
     void Dead()
     {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Lose");
     }
 
     void Flip()
